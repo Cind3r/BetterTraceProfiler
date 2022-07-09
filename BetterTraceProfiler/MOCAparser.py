@@ -143,7 +143,9 @@ class parserObj:
                 lObject.write(item + "\n")
 
             
-
+    def clrcache(self):
+        # for clearing cache if it gets out of hand
+        re.purge()
 
     def parselog(self, type=str, *args, **kwargs):
 
@@ -170,3 +172,5 @@ class parserObj:
 
         # Finally, preform download sequence, by opening a file and writing
         self.savelogfile(lof)
+
+        
