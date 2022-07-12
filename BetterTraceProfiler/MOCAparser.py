@@ -85,7 +85,7 @@ class parserObj:
                     # remove the tagging brackets from the end of each line
                     slog = self.regexp_id.sub('', slog)
 
-                    # collect all the sql statements performed in the file
+                    # collect all the SQL statements performed in the file
                     outlog = re.findall(self.regexp_sql, slog)
                     
                     return outlog
@@ -101,7 +101,7 @@ class parserObj:
                     # remove the tagging brackets from the end of each line
                     slog = self.regexp_id.sub('', slog)
 
-                    # collect all the sql statements performed in the file
+                    # collect all the DSC statements performed in the file
                     outlog = re.findall(self.regexp_dsc, slog)
                     
                     return outlog
@@ -133,7 +133,7 @@ class parserObj:
                     # remove the tagging brackets from the end of each line
                     slog = self.regexp_id.sub('', slog)
 
-                    # collect all the error statements in the file
+                    # collect all the command dispatcher statements in the file
                     outlog = re.findall(self.regexp_cmd, slog)
                     
                     return outlog
@@ -150,7 +150,7 @@ class parserObj:
                     # remove the tagging brackets from the end of each line
                     slog = self.regexp_id.sub('', slog)
 
-                    # collect all the error statements in the file
+                    # collect all the arguments in the file
                     outlog = re.findall(self.regexp_cmd, slog)
                     
                     return outlog
@@ -247,19 +247,6 @@ class parserObj:
             f.seek(0)
         line_id = [0]*num_lines
         return line_id
-
-
-    def line_identifier(self):
-        # This is for assigning numeric values to the rows (testing) by replacing the dt values
-        # NOTE: NOT WORKING
-        with open(self.filepath) as fileObject:
-            i = 1
-            while i < len(self.line_index):
-                val = '['+str(i)+'] '
-                line = fileObject.readline()
-                line = val.join(line)
-                i += 1
-        return fileObject
         
     def savelogfile(self, edited_log):
 
@@ -299,9 +286,6 @@ class parserObj:
 
         # Get number of lines
         self.line_index = self.get_line_count()
-
-        # Assign line numbers (test)
-        self.line_identifier()
 
         # Next, preform the chosen parsing style
         if type == 'CUS':
